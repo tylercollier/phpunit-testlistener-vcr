@@ -43,8 +43,26 @@ composer install --dev
 3) Add listener to your `phpunit.xml`:
 
 ``` bash
-   <listeners>
+    <listeners>
       <listener class="PHPUnit_Util_Log_VCR" file="vendor/php-vcr/phpunit-testlistener-vcr/PHPUnit/Util/Log/VCR.php" />
+    </listeners>
+```
+
+## Options
+
+If you want to specify the cassette path, you may do so like this:
+
+``` bash
+    <listeners>
+      <listener class="PHPUnit_Util_Log_VCR" file="vendor/php-vcr/phpunit-testlistener-vcr/PHPUnit/Util/Log/VCR.php">
+        <arguments>
+          <array>
+            <element key="cassette_path">
+              <string>tests/fixtures_alt</string>
+            </element>
+          </array>
+        </arguments>
+      </listener>
     </listeners>
 ```
 
