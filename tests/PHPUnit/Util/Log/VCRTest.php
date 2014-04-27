@@ -27,7 +27,7 @@ class Util_Log_VCRTest extends PHPUnit_Framework_TestCase
     /**
      * @vcr unittest_annotation_test
      */
-    public function testCan()
+    public function testCanSpecifyAlternativeCassettePath()
     {
         // Content of tests/fixtures_alt/unittest_annotation_test: "This is an alternate annotation test dummy".
         $result = file_get_contents('http://google.com');
