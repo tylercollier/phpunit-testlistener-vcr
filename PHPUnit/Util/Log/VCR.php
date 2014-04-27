@@ -43,6 +43,7 @@ class PHPUnit_Util_Log_VCR implements PHPUnit_Framework_TestListener
      */
     public function __construct(array $options = array())
     {
+    	$this->options = $options;
     }
 
     /**
@@ -102,6 +103,13 @@ class PHPUnit_Util_Log_VCR implements PHPUnit_Framework_TestListener
     }
 
     /**
+     * Get the cassette path option.
+     */
+    protected function getCassettePath() {
+    	return isset($this->options['cassette_path']) ? $this->options['cassette_path'] : null;
+    }
+
+    /**
      * A test started.
      *
      * @param PHPUnit_Framework_Test $test
@@ -123,6 +131,11 @@ class PHPUnit_Util_Log_VCR implements PHPUnit_Framework_TestListener
 
         if (empty($cassetteName)) {
             return true;
+        }
+
+        $cassettePath = $this->getCassettePath();
+        if ($cassettePath) {
+        	\VCR\VCR::configure()->setCassettePath($cassettePath);
         }
 
         \VCR\VCR::turnOn();
@@ -182,3 +195,4 @@ class PHPUnit_Util_Log_VCR implements PHPUnit_Framework_TestListener
 
     }
 }
+
